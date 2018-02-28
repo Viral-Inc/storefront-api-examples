@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import VariantSelector from './VariantSelector';
 import Client from 'shopify-buy';
 
+
 class Product extends Component {
   constructor(props) {
     super(props);

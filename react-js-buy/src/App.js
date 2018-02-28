@@ -8,7 +8,7 @@ class App extends Component {
 
     this.state = {
       isCartOpen: false,
-      checkout: { lineItems: [] },
+      checkout: {lineItems: []},
       products: [],
       shop: {}
     };
@@ -39,13 +39,13 @@ class App extends Component {
     });
   }
 
-  addVariantToCart(variantId, quantity){
+  addVariantToCart(variantId, quantity) {
     this.setState({
       isCartOpen: true,
     });
 
-    const lineItemsToAdd = [{variantId, quantity: parseInt(quantity, 10)}]
-    const checkoutId = this.state.checkout.id
+    const lineItemsToAdd = [{variantId, quantity: parseInt(quantity, 10)}];
+    const checkoutId = this.state.checkout.id;
 
     return this.props.client.addLineItems(checkoutId, lineItemsToAdd).then(res => {
       this.setState({
@@ -55,8 +55,11 @@ class App extends Component {
   }
 
   updateQuantityInCart(lineItemId, quantity) {
-    const checkoutId = this.state.checkout.id
-    const lineItemsToUpdate = [{id: lineItemId, quantity: parseInt(quantity, 10)}]
+    const checkoutId = this.state.checkout.id;
+    const lineItemsToUpdate = [{
+      id: lineItemId,
+      quantity: parseInt(quantity, 10)
+    }];
 
     return this.props.client.updateLineItems(checkoutId, lineItemsToUpdate).then(res => {
       this.setState({
@@ -66,7 +69,7 @@ class App extends Component {
   }
 
   removeLineItemInCart(lineItemId) {
-    const checkoutId = this.state.checkout.id
+    const checkoutId = this.state.checkout.id;
 
     return this.props.client.removeLineItems(checkoutId, [lineItemId]).then(res => {
       this.setState({
@@ -86,9 +89,11 @@ class App extends Component {
       <div className="App">
         <header className="App__header">
           {!this.state.isCartOpen &&
-            <div className="App__view-cart-wrapper">
-              <button className="App__view-cart" onClick={()=> this.setState({isCartOpen: true})}>Cart</button>
-            </div>
+          <div className="App__view-cart-wrapper">
+            <button className="App__view-cart"
+                    onClick={() => this.setState({isCartOpen: true})}>Cart
+            </button>
+          </div>
           }
           <div className="App__title">
             <h1>{this.state.shop.name}: React Example</h1>
